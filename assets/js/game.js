@@ -8,6 +8,12 @@ var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12;
 
+console.log(enemyNames);
+console.log(enemyNames.length);
+console.log(enemyNames[0]);
+console.log(enemyNames[3]);
+
+//fight function
 var fight = function(enemyName) {
     while(playerHealth > 0 && enemyHealth > 0){
         //Alert players that the round is starting
@@ -40,7 +46,7 @@ var fight = function(enemyName) {
             window.alert(enemyName + " has been defeated under the flags of your victory!");
             
             //award player money for winning
-            playerMoney = playerMoney +20;
+            playerMoney = playerMoney + 20;
 
             //Leave while() loop since enemy dead
             break;
@@ -63,6 +69,7 @@ var fight = function(enemyName) {
             window.alert(playerName + " still has " + playerHealth + " health left.");
         }
     }
+            
 };
 
 var startGame = function() {
@@ -71,20 +78,35 @@ var startGame = function() {
     playerAttack = 10;
     playerMoney = 10;
 
+    //Fight each enemy-robot by looping over them and fighting them one at a time
     for (var i = 0; i < enemyNames.length; i++) {
+        //if player is still alive, keep fighting
         if(playerHealth > 0) {
-            window.alert("Welcome to Robot Gladiators! Round" + ( i + 1 ) );
+            //let player know what round they are in, remember that arrays start at 0 so it needs to have 1 added to it
+            window.alert("Welcome to Robot Gladiators! Round " + ( i + 1 ) );
+            
+            //pick new enemy to fight based on the index of the enemyName array
             var pickedEnemyName = enemyNames[i];
+
+            //reset enemyHealth before starting new fight
             enemyHealth = 50;
+
+            ///debugger;
+
+            //pass the pickedEnemyName var value into the fight
             fight(pickedEnemyName);
+
+            //if player is still alive and we're not at the last enemy in the array
+            if (playerHealth > 0 && i < enemyNames.lenght - 1) {
+                shop();
+            }
         } else {
             window.alert("You have lost your robot in battle! GAME OVER");
             break;
-        }
-        
-        // play again
-        endGame();
-    }    
+        }        
+    }  
+    // play again
+    endGame();  
 };
 
 var endGame = function() {
@@ -102,6 +124,10 @@ var endGame = function() {
     } else {
         window.alert("Thank you for playing Robot Gladiators! Come back soon!");
     };
+};
+
+var shop = function() {
+    console.log("entered the shop")
 };
 
 //Ask player if they would like to play again
