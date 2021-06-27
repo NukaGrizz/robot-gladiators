@@ -1,4 +1,4 @@
-
+window.alert("Welcome to Robot Galdiators");
 var playerName = window.prompt("what is your robot's name?");
 var playerHealth = 100;
 var playerAttack = 10;
