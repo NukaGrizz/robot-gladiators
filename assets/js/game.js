@@ -38,7 +38,6 @@ var fight = function(enemy) {
         window.alert(
             playerInfo.name + " attacked " + enemy.name + ". " + enemy.name + " now has " + enemy.health + " health remaining."
         );
-        debugger;
 
         //check enemy's health
         if (enemy.health <= 0) {
@@ -50,7 +49,7 @@ var fight = function(enemy) {
             //Leave while() loop since enemy dead
             break;
         } else {
-            window.alert(enemy.name + " still has " + enemy.health + " health left.");
+            console.log(enemy.name + " still has " + enemy.health + " health left.");
         }
             
         var damage = randomNumber(enemy.attack - 3, enemy.attack);
@@ -66,7 +65,7 @@ var fight = function(enemy) {
             window.alert(playerInfo.name + " has died!");
             break;
         } else {
-            window.alert(playerInfo.name + " still has " + playerInfo.health + " health left.");
+            console.log(playerInfo.name + " still has " + playerInfo.health + " health left.");
         }
     }
             
@@ -139,20 +138,19 @@ var endGame = function() {
 var shop = function() {
     // ask playyer what they'd like to do
     var shopOptionPrompt = window.prompt(
-        "Would you like to REFILL you health, UPGRADE your attack, or LEAVE the shop? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice."
+        "Would you like to REFILL you health, UPGRADE your attack, or LEAVE the shop? Please enter 1 for REFILL, 2 for UPGRADE, or 3 for LEAVE."
         );
+    shopOptionPrompt = parseInt(shopOptionPrompt);
     // use switch to carry out action
     switch (shopOptionPrompt) {
-        case "refill":
-        case "REFILL":
+       
+        case 1:
             playerInfo.refillHealth();
             break;
-        case "upgrade":
-        case "UPGRADE":
+        case 2:
             playerInfo.upgradeAttack();
             break;
-        case "leave":
-        case "LEAVE":
+        case 3:
             window.alert("Leaving the store.");
             // Do nothing, so function wil end
             break;
